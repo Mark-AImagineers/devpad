@@ -1,0 +1,84 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+
+    <meta name="description" content="">
+    <meta name="robots" content="all,follow">
+
+    <!-- Google fonts - Popppins for copy-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+
+    <!-- The Main Theme stylesheet (Contains also Bootstrap CSS)-->
+    <link rel="stylesheet" href="{% static 'css/style.default.css' %}" id="theme-stylesheet">
+
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+</head>
+
+<body>
+    <div class="container-fluid px-0 overflow-x-hidden">
+        <div class="row gx-0 min-vh-100">
+            <div class="col-md-9 col-lg-6 col-xl-4 px-5 d-flex align-items-center shadow">
+                <div class="w-100 py-5">
+                    <div class="text-center">
+                        <img class="img-fluid mb-4" src="https://aimagineerswebfiles.s3.ap-southeast-2.amazonaws.com/AI%20Circle%20Logo.png
+                        " alt="..." style="max-width: 6rem;">
+                        <h1 class="h4 text-uppercase mb-3">Register</h1>
+                    </div>
+                    <form method="post" action="{% url 'register' %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label" for="{{ form.username.id_for_label }}">Username</label>
+                            {{ form.username|add_class:'form-control' }}
+                            {% for error in form.username.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" for="{{ form.email.id_for_label }}">Email Address</label>
+                            {{ form.email|add_class:'form-control' }}
+                            {% for error in form.email.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label" for="{{ form.password.id_for_label }}">Password</label>
+                            {{ form.password1|add_class:'form-control' }}
+                            {% for error in form.password.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="form-check mb-4">
+                            <input class="form-check-input me-2" id="registerAgree" type="checkbox" value="" name="terms">
+                            <label class="form-check-label" for="registerAgree">I agree with the terms and policy</label>
+                        </div>
+                        <div class="d-grid mb-5">
+                            <button class="btn btn-primary text-uppercase" type="submit">Register</button>
+                        </div>
+                        <p class="text-center"><small class="text-muted text-center">Already have an account? <a href="login-2.html">Log in</a>.</small></p>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-6 col-xl-8 d-none d-md-block">
+                <div class="bg-cover h-100 me-n3" style="background-image: url(https://aimagineerswebfiles.s3.ap-southeast-2.amazonaws.com/DALL·E+2024-04-30+10.42.06+-+Minimalistic+Aesthetic+Splash);"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="{% static 'js/theme.js' %}"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+</body>
+</html>
