@@ -9,7 +9,13 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            messages.success(request, 'New Account Successfully Created')
+            return redirect('/accounts/login')
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{field.capitalize()}: {error}")
+                return render(request, 'accounts/register.html', {'form': form})
     else:
         form = SignUpForm()
     return render(request,'accounts/register.html', {'form': form})
