@@ -28,7 +28,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'Successfully Logged In')
-            return redirect('/')
+            return redirect('/projectmgmt/')
         else:
             messages.error(request, 'Invalid Username or Password')
     return render(request,'accounts/login.html')
