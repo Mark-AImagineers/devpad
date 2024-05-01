@@ -32,7 +32,7 @@
                         " alt="..." style="max-width: 6rem;">
                         <h1 class="h4 text-uppercase mb-3">Register</h1>
                     </div>
-                    <form method="post" action="{% url 'register' %}">
+                    <form id="registrationForm" method="post" action="{% url 'register' %}">
                         {% csrf_token %}
                         <div class="mb-3">
                             <label class="form-label" for="{{ form.username.id_for_label }}">Username</label>
@@ -49,20 +49,27 @@
                             {% endfor %}
                         </div>
                         <div class="mb-4">
-                            <label class="form-label" for="{{ form.password.id_for_label }}">Password</label>
+                            <label class="form-label" for="{{ form.password1.id_for_label }}">Password</label>
                             {{ form.password1|add_class:'form-control' }}
                             {% for error in form.password.errors %}
                                 <div class="error">{{ error }}</div>
                             {% endfor %}
                         </div>
-                        <div class="form-check mb-4">
+                        <div class="mb-4">
+                            <label class="form-label" for="{{ form.password2.id_for_label }}">Repeat Your Password</label>
+                            {{ form.password2|add_class:'form-control' }}
+                            {% for error in form.password.errors %}
+                                <div class="error">{{ error }}</div>
+                            {% endfor %}
+                        </div>                       
+                        <!-- <div class="form-check mb-4">
                             <input class="form-check-input me-2" id="registerAgree" type="checkbox" value="" name="terms">
                             <label class="form-check-label" for="registerAgree">I agree with the terms and policy</label>
-                        </div>
+                        </div> -->
                         <div class="d-grid mb-5">
                             <button class="btn btn-primary text-uppercase" type="submit">Register</button>
                         </div>
-                        <p class="text-center"><small class="text-muted text-center">Already have an account? <a href="login-2.html">Log in</a>.</small></p>
+                        <p class="text-center"><small class="text-muted text-center">Already have an account? <a href="/accounts/login">Log in</a>.</small></p>
                     </form>
                 </div>
             </div>
